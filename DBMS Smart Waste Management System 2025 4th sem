@@ -1,0 +1,131 @@
+CREATE TABLE WasteBins (
+    BinID INT PRIMARY KEY,
+    Location VARCHAR(255),
+    WasteLevel INT,
+    LastCollected DATETIME
+);
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100),
+    Phone VARCHAR(15)
+);
+
+CREATE TABLE CollectionSchedules (
+    ScheduleID INT PRIMARY KEY,
+    BinID INT,
+    CollectionDate DATETIME,
+    Status VARCHAR(20),
+    FOREIGN KEY (BinID) REFERENCES WasteBins(BinID)
+);
+
+CREATE TABLE RecyclingCenters (
+    CenterID INT PRIMARY KEY,
+    CenterName VARCHAR(100),
+    Address VARCHAR(255)
+);
+
+-- Inserting initial data into WasteBins
+INSERT INTO WasteBins (BinID, Location, WasteLevel, LastCollected) VALUES
+(1, 'Downtown Park', 30, '2025-04-10 08:00:00'),
+(2, 'City Library', 50, '2025-04-11 09:00:00'),
+(3, 'Main Street', 20, '2025-04-12 10:00:00'),
+(4, 'Community Center', 40, '2025-04-13 11:00:00'),
+(5, 'East Side', 10, '2025-04-14 12:00:00'),
+(6, 'West End', 60, '2025-04-10 14:00:00'),
+(7, 'North Park', 25, '2025-04-11 15:00:00'),
+(8, 'South Plaza', 35, '2025-04-12 16:00:00'),
+(9, 'City Hall', 45, '2025-04-13 17:00:00'),
+(10, 'Riverfront', 55, '2025-04-14 18:00:00');
+
+-- Inserting initial data into Users
+INSERT INTO Users (UserID, Name, Email, Phone) VALUES
+(1, 'Alice Johnson', 'alice.johnson@example.com', '123-456-7890'),
+(2, 'Bob Smith', 'bob.smith@example.com', '234-567-8901'),
+(3, 'Charlie Brown', 'charlie.brown@example.com', '345-678-9012'),
+(4, 'Diana Prince', 'diana.prince@example.com', '456-789-0123'),
+(5, 'Ethan Hunt', 'ethan.hunt@example.com', '567-890-1234'),
+(6, 'Fiona Apple', 'fiona.apple@example.com', '678-901-2345'),
+(7, 'George Clooney', 'george.clooney@example.com', '789-012-3456'),
+(8, 'Hannah Montana', 'hannah.montana@example.com', '890-123-4567'),
+(9, 'Ian Malcolm', 'ian.malcolm@example.com', '901-234-5678'),
+(10, 'Julia Roberts', 'julia.roberts@example.com', '012-345-6789');
+
+-- Inserting initial data into CollectionSchedules
+INSERT INTO CollectionSchedules (ScheduleID, BinID, CollectionDate, Status) VALUES
+(1, 1, '2025-04-15 07:00:00', 'Scheduled'),
+(2, 2, '2025-04-16 07:00:00', 'Scheduled'),
+(3, 3, '2025-04-17 07:00:00', 'Scheduled'),
+(4, 4, '2025-04-18 07:00:00', 'Scheduled'),
+(5, 5, '2025-04-19 07:00:00', 'Scheduled'),
+(6, 6, '2025-04-20 07:00:00', 'Scheduled'),
+(7, 7, '2025-04-21 07:00:00', 'Scheduled'),
+(8, 8, '2025-04-22 07:00:00', 'Scheduled'),
+(9, 9, '2025-04-23 07:00:00', 'Scheduled'),
+(10, 10, '2025-04-24 07:00:00', 'Scheduled');
+
+-- Inserting initial data into RecyclingCenters
+INSERT INTO RecyclingCenters (CenterID, CenterName, Address) VALUES
+(1, 'Green Recycling Center', '123 Greenway Ave, Cityville'),
+(2, 'Eco-Friendly Center', '456 Eco St, Cityville'),
+(3, 'Recycling Hub', '789 Recycle Rd, Cityville'),
+(4, 'Waste Management Center', '321 Waste Blvd, Cityville'),
+(5, 'Sustainable Solutions', '654 Sustain St, Cityville'),
+(6, 'Planet Care Center', '987 Planet Ave, Cityville'),
+(7, 'Resource Recovery Center', '159 Resource Rd, Cityville'),
+(8, 'Clean Earth Center', '753 Clean St, Cityville'),
+(9, 'Reclaim Center', '852 Reclaim Blvd, Cityville'),
+(10, 'Zero Waste Center', '369 Zero St, Cityville');
+
+-- Querying all WasteBins
+SELECT * FROM WasteBins;
+
+-- Updating WasteLevel for BinID 1
+UPDATE WasteBins SET WasteLevel = 50 WHERE BinID = 1;
+
+-- Inserting a new WasteBin with a specific LastCollected date
+INSERT INTO WasteBins (BinID, Location, WasteLevel, LastCollected) VALUES 
+(11, 'Main St & 1st Ave', 30, '2025-04-17 12:00:00');  -- Specified date instead of NOW()
+
+-- Deleting User with UserID 2
+DELETE FROM Users WHERE UserID = 2;
+
+-- Joining WasteBins and CollectionSchedules to get locations and collection dates
+SELECT w.Location, c.CollectionDate 
+FROM WasteBins w 
+JOIN CollectionSchedules c ON w.BinID = c.BinID;
+
+-- Counting CollectionSchedules by Status
+SELECT Status, COUNT(*) 
+FROM CollectionSchedules 
+GROUP BY Status;
+
+-- Inserting a new User
+INSERT INTO Users (UserID, Name, Email, Phone) VALUES 
+(11, 'Alice Smith', 'alice@example.com', '1234567890');
+
+-- Querying all Users
+SELECT * FROM Users;
+
+-- Updating the status of the first collection schedule to 'Completed'
+UPDATE CollectionSchedules SET Status = 'Completed' WHERE ScheduleID = 1;
+
+-- Querying all Recycling Centers
+SELECT * FROM RecyclingCenters;
+
+-- Inserting a new CollectionSchedule with a specific date and time
+INSERT INTO CollectionSchedules (ScheduleID, BinID, CollectionDate, Status) VALUES 
+(11, 1, '2025-04-15 07:00:00', 'Pending');  -- Included time for clarity
+
+-- Querying WasteBins with WasteLevel greater than 40
+SELECT * FROM WasteBins WHERE WasteLevel > 40;
+
+-- Deleting the first CollectionSchedule
+DELETE FROM CollectionSchedules WHERE ScheduleID = 1;
+
+-- Finding the maximum CollectionDate for BinID 1
+SELECT MAX(CollectionDate) FROM CollectionSchedules WHERE BinID = 1;
+
+-- Counting total WasteBins
+SELECT COUNT(*) FROM WasteBins;
