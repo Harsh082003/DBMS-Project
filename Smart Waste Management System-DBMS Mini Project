@@ -1,0 +1,84 @@
+📚 Overview
+This project presents a Smart Waste Management System (SWMS) designed to improve urban waste collection and recycling processes through the use of a robust database management system. It addresses challenges faced by municipalities such as overflowing bins, inefficient routes, and low recycling participation by implementing data-driven solutions.
+
+🎯 Objectives
+Develop a relational database for managing waste bins, users, schedules, and recycling centers.
+
+Enable real-time monitoring of waste levels via sensor data.
+
+Optimize collection routes based on data insights.
+
+Enhance user participation with interactive reporting and notifications.
+
+🛠️ Technologies Used
+Backend: Python
+
+Database: MySQL
+
+Frontend: HTML/CSS
+
+Platform: Compatible with Windows and Linux
+
+🧩 Features
+Real-time tracking of waste bin levels
+
+User registration and reporting portal
+
+Dynamic waste collection scheduling
+
+Data insights through complex SQL queries
+
+Integration of recycling center management
+
+📥 System Inputs
+Waste bin locations & levels (via sensors)
+
+User registrations & feedback
+
+Collection schedules
+
+Recycling center information
+
+🧱 Database Schema
+Tables:
+WasteBins (BinID, Location, WasteLevel, LastCollected)
+
+Users (UserID, Name, Email, Phone)
+
+CollectionSchedules (ScheduleID, BinID, CollectionDate, Status)
+
+RecyclingCenters (CenterID, CenterName, Address)
+
+Relationships:
+One-to-Many: WasteBins to CollectionSchedules
+
+Users report bin status and receive notifications
+
+🔍 SQL Queries Highlights
+Insert, update, and delete operations
+
+Join queries for collection tracking
+
+Filtering bins above waste level threshold
+
+Count and aggregate data for analysis
+
+📝 ER Diagram & Relational Model
+Visual representations of data flow and table relationships help conceptualize the system's structure. (Refer to the attached report for diagrams.)
+
+📊 Sample Output
+Includes 15+ SQL queries demonstrating:
+
+Data insertion & retrieval
+
+Status updates
+
+Aggregated reports
+
+Real-time analytics
+
+🧾 Summary
+The SWMS leverages modern database systems to provide a smarter, cleaner, and more sustainable solution to waste management in urban settings. It improves resource utilization, reduces environmental impact, and encourages citizen participation.
+
+✅ Conclusion
+This project demonstrates the potential of database systems in real-world scenarios. The SWMS stands as an efficient, scalable, and user-friendly solution to a growing urban problem—waste management—making cities cleaner and more sustainable.
